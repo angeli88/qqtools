@@ -31,17 +31,8 @@ jobs:
 
       - run: npm run build:ci
 
-      - name: Create Release
-        uses: softprops/action-gh-release@v1
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          name: v${{ env.VERSION }}
-          tag_name: v${{ env.VERSION }}
-          draft: true
-          prerelease: true
-          files: |
-            build/linux/qqtools-${{ env.VERSION }}-linux64.zip
-            build/mac/qqtools-${{ env.VERSION }}-mac.zip
-            build/mac-arm64/qqtools-${{ env.VERSION }}-mac-arm64.zip
-            build/win/qqtools-${{ env.VERSION }}-win64.zip
-            build/win32/qqtools-${{ env.VERSION }}-win32.zip
+          name: win64.zip
+          path: build/win/qqtools-${{ env.VERSION }}-win64.zip
